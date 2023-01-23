@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="task"
+            type="com.aman.roomwithlivedata.models.Task" />
+    </data>
+    <LinearLayout android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_10dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tilTask">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/etTask"
+                android:text="@{task.task}"
+                android:inputType="textPersonName"
+                android:hint="@string/enter_task"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tilDate"
+            android:layout_marginTop="@dimen/margin_10dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/etDate"
+                android:digits="1234567890"
+                android:inputType="number"
+                android:text="@{task.date.toString()}"
+                android:hint="@string/enter_date"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnAdd"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:text="@string/update"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+</layout>

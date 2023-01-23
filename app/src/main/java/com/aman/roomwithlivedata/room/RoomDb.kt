@@ -9,7 +9,7 @@ import com.aman.roomwithlivedata.models.Task
 
 @Database(entities = [Task::class], version = 1)
 abstract class RoomDb : RoomDatabase(){
-    abstract fun notesDao(): TaskDao
+    abstract fun taskDao(): TaskDao
     companion object{
         var notesDatabase: RoomDb?= null
         @Synchronized

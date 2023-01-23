@@ -9,9 +9,9 @@ class Task {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
 
-    @ColumnInfo(name = "task")
+    @ColumnInfo()
     var task: String?= null
 
-    @ColumnInfo(name = "date")
+    @ColumnInfo()
     var date: String?= null
 }

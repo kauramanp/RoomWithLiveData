@@ -1,34 +1,37 @@
 package com.aman.roomwithlivedata.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.aman.roomwithlivedata.databinding.ItemLayoutBinding
 import com.aman.roomwithlivedata.models.Task
 
-
-class ListAdapter(var list: MutableList<Task>):BaseAdapter() {
-    override fun getCount(): Int {
-        return list.size
+class ListAdapter(var context: Context):RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+    var list =  ArrayList<Task>()
+    inner class ViewHolder(var binding: ItemLayoutBinding): RecyclerView.ViewHolder(binding.root){
+        fun onBind(task: Task,position: Int, ){
+            binding.task= task
+        }
     }
 
-    override fun getItem(p0: Int): Any {
-        return list.size
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        var view = ItemLayoutBinding.inflate(LayoutInflater.from(parent.context),parent, false)
+        return ViewHolder(view)
     }
 
-    override fun getItemId(p0: Int): Long {
-        return list[p0].id.toLong()
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.onBind(list[position],position)
     }
 
-    override fun getView(position: Int, p1: View?, parent: ViewGroup?): View {
-        val itemBinding: ItemLayoutBinding = ItemLayoutBinding.inflate(
-            LayoutInflater.from(parent?.getContext()),
-            parent,
-            false
-        )
-        itemBinding.task = list[position]
+    override fun getItemCount(): Int = list.size
 
-       return itemBinding.root
+    fun updateList(list: ArrayList<Task>){
+        this.list.clear()
+        this.list.addAll(list)
+    }
+
+    fun clearList(){
+        this.list.clear()
     }
 }
