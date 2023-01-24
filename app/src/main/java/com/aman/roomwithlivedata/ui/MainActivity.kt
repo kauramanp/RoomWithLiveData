@@ -31,12 +31,11 @@ class MainActivity : AppCompatActivity() {
         binding.listView.adapter = listAdapter
 
         taskViewModel = ViewModelProvider(this)[TaskViewModel::class.java]
-        taskViewModel.getTask().observe(this
+        taskViewModel.taskList.observe(this
         ) { t ->
             taskList.clear()
             taskList.addAll(t as ArrayList<Task>)
             listAdapter.updateList(taskList)
-            listAdapter.notifyDataSetChanged()
         }
 
         binding.fabAddUpdate.setOnClickListener {

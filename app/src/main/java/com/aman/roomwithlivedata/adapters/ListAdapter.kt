@@ -1,6 +1,7 @@
 package com.aman.roomwithlivedata.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,8 +10,10 @@ import com.aman.roomwithlivedata.models.Task
 
 class ListAdapter(var context: Context):RecyclerView.Adapter<ListAdapter.ViewHolder>() {
     var list =  ArrayList<Task>()
+    private val TAG = "ListAdapter"
     inner class ViewHolder(var binding: ItemLayoutBinding): RecyclerView.ViewHolder(binding.root){
         fun onBind(task: Task,position: Int, ){
+            Log.e(TAG," task ${task.task} $position")
             binding.task= task
         }
     }
@@ -27,8 +30,12 @@ class ListAdapter(var context: Context):RecyclerView.Adapter<ListAdapter.ViewHol
     override fun getItemCount(): Int = list.size
 
     fun updateList(list: ArrayList<Task>){
+        Log.e(TAG," list ${list.size}")
         this.list.clear()
         this.list.addAll(list)
+        Log.e(TAG,"this list ${this.list.size}")
+
+        notifyDataSetChanged()
     }
 
     fun clearList(){
