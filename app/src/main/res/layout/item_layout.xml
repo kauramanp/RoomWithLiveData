@@ -1,37 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="task"
             type="com.aman.roomwithlivedata.models.Task" />
+        <variable
+            name="click"
+            type="com.aman.roomwithlivedata.interfaces.ClickInterface" />
+        <variable
+            name="position"
+            type="Integer" />
     </data>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:paddingHorizontal="@dimen/margin_10dp"
-    android:layout_marginTop="@dimen/margin_5dp"
-    android:layout_height="wrap_content">
+
     <LinearLayout
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:paddingHorizontal="@dimen/margin_10dp"
-    android:layout_marginTop="@dimen/margin_5dp"
-    android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_5dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/margin_10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_5dp"
+            android:gravity="end"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/margin_10dp">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_edit"
+                android:onClick="@{()->click.clickInterface(task,0,position)}"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_delete"
+                android:onClick="@{()->click.clickInterface(task,1,position)}"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvTask"
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{task.task}"
+            tools:text="@string/app_name" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{task.date}"
+            tools:text="@string/app_name" />
     </LinearLayout>
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/tvTask"
-    tools:text="@string/app_name"
-    android:text="@{task.task}"
-    style="@style/TextAppearance.AppCompat.Headline"/>
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/tvDate"
-    tools:text="@string/app_name"
-    android:text="@{task.date}"
-    style="@style/TextAppearance.AppCompat.Headline"/>
-</LinearLayout>
 </layout>

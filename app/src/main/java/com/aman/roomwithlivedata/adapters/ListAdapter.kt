@@ -6,15 +6,18 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aman.roomwithlivedata.databinding.ItemLayoutBinding
+import com.aman.roomwithlivedata.interfaces.ClickInterface
 import com.aman.roomwithlivedata.models.Task
 
-class ListAdapter(var context: Context):RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+class ListAdapter(var context: Context, var clickInterface: ClickInterface):RecyclerView.Adapter<ListAdapter.ViewHolder>() {
     var list =  ArrayList<Task>()
     private val TAG = "ListAdapter"
     inner class ViewHolder(var binding: ItemLayoutBinding): RecyclerView.ViewHolder(binding.root){
-        fun onBind(task: Task,position: Int, ){
+        fun onBind(task: Task,position: Int,clickInterface: ClickInterface ){
             Log.e(TAG," task ${task.task} $position")
             binding.task= task
+            binding.click= clickInterface
+            binding.position = position
         }
     }
 
@@ -24,7 +27,7 @@ class ListAdapter(var context: Context):RecyclerView.Adapter<ListAdapter.ViewHol
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.onBind(list[position],position)
+        holder.onBind(list[position],position, clickInterface = clickInterface)
     }
 
     override fun getItemCount(): Int = list.size

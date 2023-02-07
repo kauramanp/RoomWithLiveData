@@ -4,4 +4,8 @@
     <string name="enter_date">Select Date</string>
     <string name="add">Add</string>
     <string name="update">Update</string>
+    <string name="delete_task">Delete task</string>
+    <string name="delete_task_msg">Do you want to delete task?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

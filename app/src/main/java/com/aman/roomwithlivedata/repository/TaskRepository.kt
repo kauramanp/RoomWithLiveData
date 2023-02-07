@@ -7,7 +7,14 @@ import com.aman.roomwithlivedata.room.TaskDao
 class TaskRepository(private val taskDao: TaskDao) {
     val readAllData:LiveData<List<Task>> = taskDao.getTasks()
 
-    suspend fun insertTask(user: Task){
-        taskDao.insertTask(user)
+    suspend fun insertTask(task: Task){
+        taskDao.insertTask(task)
+    }
+    suspend fun updateTask(task: Task){
+        taskDao.updateFun(task)
+    }
+
+    suspend fun removeTask(task: Task){
+        taskDao.deleteTask(task)
     }
 }
